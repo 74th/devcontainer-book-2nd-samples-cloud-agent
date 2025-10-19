@@ -22,3 +22,15 @@ class OperationTest(TestCase):
         created_task = op.create_task(new_task)
 
         assert created_task["id"] is not None, "タスクIDが割り振られること"
+
+    def test_delete_task(self):
+        db = MemDB()
+        op = OperationInteractor(db)
+
+        initial_tasks = op.show_tasks()
+        initial_count = len(initial_tasks)
+
+        op.delete_task(0)
+
+        remaining_tasks = op.show_tasks()
+        assert len(remaining_tasks) == initial_count - 1, "タスクが削除されること"
