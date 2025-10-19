@@ -48,5 +48,13 @@ def done_task(task_id: int):
     return task
 
 
+# タスクを削除する
+# DELETE /api/tasks/<タスクのID>
+@app.route("/api/tasks/<int:task_id>", methods=["DELETE"])
+def delete_task(task_id: int):
+    op.delete_task(task_id)
+    return "", 204
+
+
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=8080)

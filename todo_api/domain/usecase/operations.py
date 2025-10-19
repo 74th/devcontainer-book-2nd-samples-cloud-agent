@@ -23,3 +23,6 @@ class OperationInteractor:
         self._db.update(task)
 
         return task
+
+    def delete_task(self, task_id: int) -> None:
+        self._db.delete(task_id)
